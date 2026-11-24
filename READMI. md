@@ -1,1 +1,228 @@
-READMI
+Wine Quality Prediction Using Regression and Classification
+Applied Predictive Analysis Project
+Galgotias University | School of AI | B.Tech 3rd Year | Session
+2026--27
+Replace the student/team placeholders below with the correct details
+before publishing.
+
+Project Overview
+This project applies machine learning to predict wine quality from
+measurable physicochemical properties. It combines the red and white
+Vinho Verde wine datasets and approaches the task in two ways:
+- Regression: predicts the numerical wine-quality score.
+- Classification: assigns each wine to a project-defined quality
+  category: Low, Medium, or High.
+The project is intended as a learning and decision-support prototype. It
+does not replace expert sensory evaluation or certified laboratory
+testing.
+Objectives
+1. Combine and prepare the red and white wine datasets.
+2. Explore feature distributions and relationships with wine quality.
+3. Train and compare multiple regression and classification algorithms.
+4. Evaluate models using appropriate metrics.
+5. Examine feature importance and generate sample predictions.
+Dataset
+- Source: UCI Machine Learning Repository -- Wine Quality
+  (Dataset 186)
+- Original red-wine records: 1,599
+- Original white-wine records: 4,898
+- Combined original records: 6,497, before duplicate removal
+- Regression target: quality
+- Classification target: quality_category
+The original files contain 11 physicochemical input features and the
+quality target. The project also creates a wine_type feature to
+distinguish red and white wine.
+Input Features
+- Fixed acidity
+- Volatile acidity
+- Citric acid
+- Residual sugar
+- Chlorides
+- Free sulfur dioxide
+- Total sulfur dioxide
+- Density
+- pH
+- Sulphates
+- Alcohol
+- Wine type (added during project preparation)
+Classification Categories
+The project converts the numerical quality score into three categories:
+
+  Quality score   Category
+  4 or below      Low
+5--6            Medium
+7 or above      High
+
+These category boundaries are project-defined groupings, not labels
+supplied by the original dataset.
+Workflow
+1. Load the red and white CSV files.
+2. Add the wine_type column and combine both datasets.
+3. Check missing values and remove duplicate rows.
+4. Encode wine type (Red = 0, White = 1).
+5. Perform exploratory data analysis (EDA) and statistical analysis.
+6. Split the data into training and testing sets (80:20).
+7. Scale features for algorithms that are sensitive to feature scale.
+8. Train regression and classification models.
+9. Compare model performance and inspect the confusion matrix.
+10. Analyze feature importance and make sample predictions.
+Exploratory Data Analysis
+The notebook explores:
+- Wine-quality counts
+- Red and white wine counts
+- Alcohol distribution
+- Volatile acidity versus quality
+- Alcohol versus quality
+- Feature correlation heatmap
+- Alcohol-quality scatter plot
+Boxplots are used to inspect feature distributions. The workflow
+described in the project does not record a separate outlier-removal
+operation.
+Machine Learning Models
+Regression
+  Algorithm                         Configuration used
+  Linear Regression                 Scikit-learn default estimator
+Decision Tree Regressor           max_depth=10, random_state=42
+Random Forest Regressor           n_estimators=100, random_state=42
+Support Vector Regression (SVR)   RBF kernel, C=10, epsilon=0.1
+
+Evaluation metrics: MAE, RMSE, and R² score.
+- Lower MAE and RMSE indicate smaller prediction errors.
+- A higher R² score indicates that the model explains more variation
+  in the target.
+Classification
+  Algorithm                      Configuration used
+  Logistic Regression            max_iter=1000
+Decision Tree Classifier       max_depth=10, random_state=42
+Random Forest Classifier       n_estimators=100, random_state=42
+Support Vector Machine (SVM)   RBF kernel, C=10
+
+Evaluation metrics: Accuracy, weighted Precision, weighted Recall,
+and weighted F1-score. The classification train-test split uses
+stratification to preserve class proportions.
+Tools and Libraries
+- Python
+- Google Colab / Jupyter Notebook
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+Repository Structure
+A suggested GitHub repository structure:
+wine-quality-prediction/
+├── Wine_Quality_Prediction.ipynb
+├── README.md
+├── requirements.txt
+└── data/
+    ├── winequality-red.csv
+    └── winequality-white.csv
+If the dataset files are not included in the repository, download them
+from the UCI source linked above and upload them to the Colab notebook
+when prompted. Do not commit temporary extracted files or large
+unnecessary outputs.
+How to Run
+1. Download or clone this repository.
+2. Open Wine_Quality_Prediction.ipynb in Google Colab or Jupyter
+   Notebook.
+3. Download the Wine Quality dataset from the UCI source.
+4. If using the notebook's ZIP-upload workflow, upload the dataset ZIP
+   when the upload cell runs.
+5. Run the notebook cells in order, from data loading through model
+   evaluation.
+6. Review the generated regression and classification comparison
+   tables, confusion matrix, feature-importance chart, and sample
+   predictions.
+Install Dependencies
+Create a requirements.txt file with:
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+Then install with:
+pip install -r requirements.txt
+Results
+The notebook calculates the regression and classification metrics and
+creates model-comparison tables. Exact metric values and the winning
+model are intentionally not stated here because they must be copied from
+the final executed notebook outputs. Add your actual results below
+after running the notebook:
+Regression Results
+  Model                         MAE               RMSE                 R²
+  Linear         Add notebook value Add notebook value Add notebook value
+Regression                                           
+
+  Decision Tree  Add notebook value Add notebook value Add notebook value
+
+  Random Forest  Add notebook value Add notebook value Add notebook value
+SVR            Add notebook value Add notebook value Add notebook value
+Best regression model: Add the model selected from your actual
+comparison table.
+Classification Results
+  Model              Accuracy       Weighted       Weighted    Weighted F1
+Precision         Recall 
+  Logistic       Add notebook   Add notebook   Add notebook   Add notebook
+Regression            value          value          value          value
+
+  Decision       Add notebook   Add notebook   Add notebook   Add notebook
+Tree                  value          value          value          value
+
+  Random         Add notebook   Add notebook   Add notebook   Add notebook
+Forest                value          value          value          value
+SVM            Add notebook   Add notebook   Add notebook   Add notebook
+value          value          value          value
+Best classification model: Add the model selected from your actual
+weighted F1 comparison.
+Applications and Advantages
+- Preliminary wine-quality screening based on measured chemical
+  properties.
+- Comparing batches and observing patterns in physicochemical
+  measurements.
+- Identifying which features the trained model relies on.
+- Practising an end-to-end machine-learning workflow with both
+  regression and classification.
+Limitations
+- The target quality value is a sensory score.
+- Quality categories are imbalanced in the source data.
+- The dataset does not provide details such as brand, price, or grape
+  variety.
+- Outliers were explored but not explicitly removed in the recorded
+  workflow.
+- Results depend on the selected train-test split and model settings.
+- Feature importance describes model reliance; it does not establish
+  causation.
+Future Scope
+- Use cross-validation and systematic hyperparameter tuning.
+- Investigate class weighting or resampling for minority classes.
+- Evaluate additional ensemble and gradient-boosting models.
+- Validate performance on new, independent wine samples.
+- Build a simple web interface or API for predictions.
+Conclusion
+The project demonstrates how machine learning can use physicochemical
+measurements to estimate wine quality in two complementary ways:
+predicting a numerical score through regression and assigning a Low,
+Medium, or High category through classification. The workflow covers
+data preparation, exploratory analysis, model training, evaluation,
+model comparison, confusion-matrix analysis, feature-importance
+analysis, and sample prediction. The results should be interpreted as a
+decision-support prototype and not as a replacement for expert wine
+assessment.
+References
+1. UCI Machine Learning Repository, Wine Quality
+   Dataset, DOI:
+   10.24432/C56S3T.
+2. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., and Reis, J.
+   (2009). Modeling wine preferences by data mining from
+   physicochemical properties. Decision Support Systems, 47(4),
+   547--553.
+Project Details
+- Project title: Wine Quality Prediction Using Regression and
+  Classification
+- University: Galgotias University
+- School: School of AI
+- Programme: B.Tech 3rd Year
+- Session: 2026--27
+- Student name(s): Add name(s)
+- Admission number(s): Add admission number(s)
+- Team name: Add team name
